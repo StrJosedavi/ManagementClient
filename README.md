@@ -15,3 +15,9 @@ Este projeto é uma API RESTful desenvolvida em .NET 8 para o gerenciamento de c
 1. **Clone o repositório**
    ```bash
    git clone https://github.com/StrJosedavi/ManagementClient.git
+
+## Estrutura de Dados
+
+![Tabela Person](https://github.com/StrJosedavi/ManagementClient/assets/57737898/54a2eac9-4b61-4d25-b0ba-320fa0f5506d)
+
+
