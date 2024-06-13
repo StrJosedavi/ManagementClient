@@ -16,6 +16,10 @@ Este projeto é uma API RESTful desenvolvida em .NET 8 para o gerenciamento de c
    ```bash
    git clone https://github.com/StrJosedavi/ManagementClient.git
 
+2. **Realize a migração da base de dados**
+   ```base
+   dotnet ef database update
+
 ## Estrutura de Dados
 
 ![Tabela Person](https://github.com/StrJosedavi/ManagementClient/assets/57737898/54a2eac9-4b61-4d25-b0ba-320fa0f5506d)
