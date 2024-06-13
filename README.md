@@ -1,8 +1,8 @@
 # Projeto de API RESTful para Gerenciamento de Clientes
 
-## Descrição
+## DescriÃ§Ã£o
 
-Este projeto é uma API RESTful desenvolvida em .NET 8 para o gerenciamento de clientes. A API permite realizar operações CRUD (Create, Read, Update, Delete) em clientes de dois tipos: Pessoa Física (PF) e Pessoa Jurídica (PJ). A autenticação básica é implementada para garantir o acesso seguro à API. O banco de dados utilizado é o PostgreSQL.
+Este projeto Ã© uma API RESTful desenvolvida em .NET 8 para o gerenciamento de clientes. A API permite realizar operaÃ§Ãµes CRUD (Create, Read, Update, Delete) em clientes de dois tipos: Pessoa FÃ­sica (PF) e Pessoa JurÃ­dica (PJ). A autenticaÃ§Ã£o bÃ¡sica Ã© implementada para garantir o acesso seguro Ã  API. O banco de dados utilizado Ã© o PostgreSQL.
 
 ## Requisitos
 
@@ -10,9 +10,8 @@ Este projeto é uma API RESTful desenvolvida em .NET 8 para o gerenciamento de cl
 - PostgreSQL
 - Ferramentas para teste de API (como Postman ou cURL)
 
-## Instalação
+## InstalaÃ§Ã£o
 
-1. **Clone o repositório**
+1. **Clone o repositÃ³rio**
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git
-   cd nome-do-repositorio
+   git clone https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/StrJosedavi/ManagementClient.git
