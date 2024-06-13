@@ -14,4 +14,4 @@ Este projeto é uma API RESTful desenvolvida em .NET 8 para o gerenciamento de c
 
 1. **Clone o repositório**
    ```bash
-   git clone https://github.com/seu-usuario/nome-do-repositorio.git](https://github.com/StrJosedavi/ManagementClient.git
+   git clone https://github.com/StrJosedavi/ManagementClient.git
