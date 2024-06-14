@@ -24,6 +24,9 @@ namespace WassamaraManagement.Services
         {
             UserAdmin user = _context.UsersAdmin.FirstOrDefault(x => x.Username == clienteDto.Username);
 
+            if (user == null) 
+                throw new ArgumentException("Credenciais Incorretas!!");
+
             StringBuilder builder = new StringBuilder();
             using var sha512 = SHA512.Create();
 
