@@ -1,5 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
+using System.Security.Cryptography;
 using System.Text;
 using WassamaraManagement.Data;
 using WassamaraManagement.Domain;
@@ -23,8 +24,23 @@ namespace WassamaraManagement.Services
         {
             UserAdmin user = _context.UsersAdmin.FirstOrDefault(x => x.Username == clienteDto.Username);
 
-            //if(user.password){}
+            StringBuilder builder = new StringBuilder();
+            using var sha512 = SHA512.Create();
 
+            // Convertendo a senha de string para bytes
+            byte[] bytes = Encoding.UTF8.GetBytes(clienteDto.Password);
+
+            // Calculando o hash SHA-512 dos bytes da senha
+            byte[] hash = sha512.ComputeHash(bytes);
+
+            // Convertendo o hash de bytes para uma string hexadecimal
+
+            for (int i = 0; i < hash.Length; i++)
+            {
+                builder.Append(hash[i].ToString("x2")); // "x2" formata cada byte como hexadecimal
+            }
+            
+            if (user.Password == builder.ToString()) {
                 var jwtSettings = _configuration.GetSection("JwtSettings");
                 var secretKey = jwtSettings["SecretKey"];
                 var timeExpirationToken = jwtSettings["TokenExpiration"];
@@ -41,6 +57,12 @@ namespace WassamaraManagement.Services
                 var jwt = new JwtSecurityTokenHandler().WriteToken(token);
 
                 return new { code = jwt, expirationDate = expires.ToString() };
+            }
+            else
+            {
+                throw new ArgumentException("Credenciais Incorretas!!");
+            }
+
         }
     }
 }
