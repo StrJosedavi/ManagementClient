@@ -52,6 +52,11 @@ Modelo Model-View-Controller
 ![image](https://github.com/StrJosedavi/ManagementClient/assets/57737898/48a7b832-431c-4fb8-ae49-4b7d2bf355b0)
 
 obs:. A view foi escrita em uma outra linguagem, em um repositório separado, esse projeto contemplará somente Model e Controller 
+### - Padrões Utilizados 
+
+UnitOfWork e Repository Pattern
+
+![image](https://github.com/StrJosedavi/ManagementClient/assets/57737898/fa2eefdb-9fb7-4ae4-8441-45b05c7f5149)
 
 ### Referências
 
