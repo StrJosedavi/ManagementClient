@@ -58,6 +58,11 @@ UnitOfWork e Repository Pattern
 
 ![image](https://github.com/StrJosedavi/ManagementClient/assets/57737898/fa2eefdb-9fb7-4ae4-8441-45b05c7f5149)
 
+Service Pattern
+
+![image](https://github.com/StrJosedavi/ManagementClient/assets/57737898/18ede1aa-de0e-4301-aff8-6d84d394f702)
+
+
 ### Referências
 
 - https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
