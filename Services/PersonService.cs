@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using System;
 using WassamaraManagement.Domain;
 using WassamaraManagement.Domain.Enums;
 using WassamaraManagement.DTOs;
@@ -20,10 +19,16 @@ namespace WassamaraManagement.Services
             _mapper = mapper;
         }
 
-        public async Task<PersonDto> GetById(int id)
+        public async Task<PersonDto> GetById(long id)
         {
             var person = await _unitOfWork.Persons.GetById(id);
             return _mapper.Map<PersonDto>(person);
+        }
+
+        public async Task<List<Person>> GetAll(string? cpf = null, string? cnpj = null)
+        {
+            var person = await _unitOfWork.Persons.GetAll(cpf, cnpj);
+            return person == null ? new List<Person>() : person.ToList();
         }
 
         public async Task<PersonDto> Create(PersonDto personDto)
@@ -35,20 +40,12 @@ namespace WassamaraManagement.Services
             if (personDto.Type == PersonType.PF)
             {
                 PersonValidator.ValidatePersonPF(personDto.NaturalPerson!);
-
-                person.CPF = personDto.NaturalPerson.CPF;
-                person.BirthDate = personDto.NaturalPerson.BirthDate;
-                person.FullName = personDto.NaturalPerson.FullName;
             }
             if (personDto.Type == PersonType.PJ)
             {
                 PersonValidator.ValidatePersonPJ(personDto.PersonJuridical!);
-
-                person.CNPJ = personDto.PersonJuridical.CNPJ;
-                person.TradingName = personDto.PersonJuridical.TradingName;
-                person.CompanyName = personDto.PersonJuridical.CompanyName;
             }
-            if(Enum.IsDefined(typeof(PersonType), personDto.Type))
+            if(!Enum.IsDefined(typeof(PersonType), personDto.Type))
                 throw new ArgumentException("Invalid person type.");
 
             await _unitOfWork.Persons.Add(person);
@@ -56,50 +53,43 @@ namespace WassamaraManagement.Services
             return _mapper.Map<PersonDto>(person);
         }
 
-        public async Task Update(int id, PersonDto personDto)
+        public async Task Update(long id, PersonDto personDto)
         {
-            Person person = await _unitOfWork.Persons.GetById(id);
-            if (person == null)
+            Person personExist = await _unitOfWork.Persons.GetById(id);
+            if (personExist == null)
             {
                 throw new KeyNotFoundException("Person not found.");
             }
 
             PersonValidator.ValidatePersonDto(personDto);
 
-            person = _mapper.Map<Person>(personDto);
+            Person person = _mapper.Map<Person>(personDto);
+            person.Id = id;
 
             if (personDto.Type == PersonType.PF)
             {
                 PersonValidator.ValidatePersonPF(personDto.NaturalPerson!);
-
-                person.CPF = personDto.NaturalPerson.CPF;
-                person.BirthDate = personDto.NaturalPerson.BirthDate;
-                person.FullName = personDto.NaturalPerson.FullName;
             }
             if (personDto.Type == PersonType.PJ)
             {
                 PersonValidator.ValidatePersonPJ(personDto.PersonJuridical!);
-
-                person.CNPJ = personDto.PersonJuridical.CNPJ;
-                person.TradingName = personDto.PersonJuridical.TradingName;
-                person.CompanyName = personDto.PersonJuridical.CompanyName;
             }
-            if (Enum.IsDefined(typeof(PersonType), personDto.Type))
-                throw new ArgumentException("Invalid person type.");
+            if (!Enum.IsDefined(typeof(PersonType), personDto.Type))
+                throw new ArgumentException("Tipo de Pessoas inválida");
 
-            await _unitOfWork.Persons.Update(id, person);
+            await _unitOfWork.Persons.Update(personExist, person);
             await _unitOfWork.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(long id)
         {
-            var person = await _unitOfWork.Persons.GetById(id);
+            Person person = await _unitOfWork.Persons.GetById(id);
             if (person == null)
             {
-                throw new KeyNotFoundException("Person not found.");
+                throw new KeyNotFoundException("Pessoa não encontrada");
             }
 
-            await _unitOfWork.Persons.Delete(id);
+            await _unitOfWork.Persons.Delete(person);
             await _unitOfWork.SaveChangesAsync();
         }
     }

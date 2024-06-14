@@ -18,19 +18,40 @@ namespace WassamaraManagement.Repository
             await _context.Persons.AddAsync(person);
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Person person)
         {
-            await _context.Persons.ExecuteDeleteAsync<Person>();
+            _context.Persons.Remove(person);
+            await _context.SaveChangesAsync();
         }
 
-        public async Task<Person> GetById(int id)
+        public async Task<List<Person>> GetAll(string? cpf, string? cnpj)
+        {
+            var query = _context.Persons.AsQueryable();
+
+            if (!string.IsNullOrEmpty(cpf))
+            {
+                query = query.Where(p => p.CPF == cpf);
+            }
+            if (!string.IsNullOrEmpty(cnpj))
+            {
+                query = query.Where(p => p.CNPJ == cnpj);
+            }
+
+            query = query.OrderBy(p => p.Id);
+
+            var persons = await query.ToListAsync();
+
+            return persons;
+        }
+
+        public async Task<Person> GetById(long id)
         {
             return await _context.Persons.FindAsync(id);
         }
 
-        public async Task Update(int id, Person person)
+        public async Task Update(Person personExist, Person person)
         {
-            _context.Entry(id).CurrentValues.SetValues(person);
+            _context.Entry(personExist).CurrentValues.SetValues(person);
              await _context.SaveChangesAsync();
         }
     }

@@ -1,12 +1,14 @@
-﻿using WassamaraManagement.DTOs;
+﻿using WassamaraManagement.Domain;
+using WassamaraManagement.DTOs;
 
 namespace WassamaraManagement.Services.Interfaces
 {
     public interface IPersonService
     {
-        Task<PersonDto> GetById(int id);
-        Task<PersonDto> Create(PersonDto clienteDto);
-        Task Update(int id, PersonDto clienteDto);
-        Task Delete(int id);
+        Task<PersonDto> GetById(long id);
+        Task<List<Person>> GetAll(string? cpf, string? cnpj);
+        Task<PersonDto> Create(PersonDto personDto);
+        Task Update(long id, PersonDto personDto);
+        Task Delete(long id);
     }
 }

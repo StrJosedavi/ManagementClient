@@ -14,6 +14,8 @@ namespace WassamaraManagement.Ioc
             services.AddScoped<IPersonRepository, PersonRepository>();
             services.AddScoped<IPersonService, PersonService>();
 
+            services.AddScoped<IAuthenticateService, AuthenticateService>();
+
             return services;
         }
     }

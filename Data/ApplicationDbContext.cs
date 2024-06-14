@@ -7,6 +7,7 @@ namespace WassamaraManagement.Data
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Person> Persons { get; set; }
+        public DbSet<UserAdmin> UsersAdmin { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
@@ -15,6 +16,7 @@ namespace WassamaraManagement.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Person>().ToTable("Person");
+            modelBuilder.Entity<UserAdmin>().ToTable("UserAdmin");
         }
     }
 

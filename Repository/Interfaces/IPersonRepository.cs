@@ -4,9 +4,10 @@ namespace WassamaraManagement.Repository.Interfaces
 {
     public interface IPersonRepository
     {
-        Task<Person> GetById(int id);
+        Task<Person> GetById(long id);
+        Task<List<Person>> GetAll(string? cpf, string? cnpj);
         Task Add(Person person);
-        Task Update(int id, Person person);
-        Task Delete(int id);
+        Task Update(Person personExist, Person person);
+        Task Delete(Person person);
     }
 }

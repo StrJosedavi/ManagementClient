@@ -1,13 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.ComponentModel.DataAnnotations;
 using WassamaraManagement.Domain.Enums;
 
 namespace WassamaraManagement.Domain
 {
+    [PrimaryKey(nameof(Id))]
     public class Person
     {
-        [Key]
-        public int Id { get; set; }
+        public long Id { get; set; }
         public PersonType Type { get; set; }
 
         public string? Address { get; set; }
