@@ -60,9 +60,9 @@ UnitOfWork e Repository Pattern
 
 ### Referências
 
-https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
-https://learn.microsoft.com/pt-br/ef/core/get-started/overview/install
-https://docs.automapper.org/en/stable/Configuration.html
-https://learn.microsoft.com/pt-br/dotnet/core/extensions/dependency-injection
-https://www.macoratti.net/11/10/net_pr1.htm
-https://www.macoratti.net/16/01/net_uow1.htm
+- https://learn.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli
+- https://learn.microsoft.com/pt-br/ef/core/get-started/overview/install
+- https://docs.automapper.org/en/stable/Configuration.html
+- https://learn.microsoft.com/pt-br/dotnet/core/extensions/dependency-injection
+- https://www.macoratti.net/11/10/net_pr1.htm
+- https://www.macoratti.net/16/01/net_uow1.htm
