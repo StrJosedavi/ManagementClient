@@ -5,6 +5,7 @@ using System.Text;
 using WassamaraManagement.Data;
 using WassamaraManagement.Domain;
 using WassamaraManagement.DTOs;
+using WassamaraManagement.Middleware.Exceptions;
 using WassamaraManagement.Services.Interfaces;
 
 namespace WassamaraManagement.Services
@@ -25,7 +26,7 @@ namespace WassamaraManagement.Services
             UserAdmin user = _context.UsersAdmin.FirstOrDefault(x => x.Username == clienteDto.Username);
 
             if (user == null) 
-                throw new ArgumentException("Credenciais Incorretas!!");
+                throw new BadRequestException("Credenciais Incorretas!!");
 
             StringBuilder builder = new StringBuilder();
             using var sha512 = SHA512.Create();
@@ -63,7 +64,7 @@ namespace WassamaraManagement.Services
             }
             else
             {
-                throw new ArgumentException("Credenciais Incorretas!!");
+                throw new BadRequestException("Credenciais Incorretas!!");
             }
 
         }

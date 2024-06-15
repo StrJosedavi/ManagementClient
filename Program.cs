@@ -7,6 +7,7 @@ using System.Text;
 using WassamaraManagement.Data;
 using WassamaraManagement.DTOs.Mappers;
 using WassamaraManagement.Ioc;
+using WassamaraManagement.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -92,6 +93,8 @@ app.UseCors(builder =>
     .AllowAnyMethod()
     .AllowAnyHeader();
 });
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseAuthentication();
 app.UseAuthorization();

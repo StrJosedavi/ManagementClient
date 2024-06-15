@@ -2,6 +2,7 @@
 using WassamaraManagement.Domain;
 using WassamaraManagement.Domain.Enums;
 using WassamaraManagement.DTOs;
+using WassamaraManagement.Middleware.Exceptions;
 using WassamaraManagement.Repository.UnitOfWork;
 using WassamaraManagement.Services.Interfaces;
 using WassamaraManagement.Services.Validators;
@@ -46,7 +47,7 @@ namespace WassamaraManagement.Services
                 PersonValidator.ValidatePersonPJ(personDto.PersonJuridical!);
             }
             if(!Enum.IsDefined(typeof(PersonType), personDto.Type))
-                throw new ArgumentException("Invalid person type.");
+                throw new BadRequestException("Tipo de Pessoa inválida");
 
             await _unitOfWork.Persons.Add(person);
             await _unitOfWork.SaveChangesAsync();
@@ -58,7 +59,7 @@ namespace WassamaraManagement.Services
             Person personExist = await _unitOfWork.Persons.GetById(id);
             if (personExist == null)
             {
-                throw new KeyNotFoundException("Person not found.");
+                throw new NotFoundException("Pessoa não encontrada");
             }
 
             PersonValidator.ValidatePersonDto(personDto);
@@ -75,7 +76,7 @@ namespace WassamaraManagement.Services
                 PersonValidator.ValidatePersonPJ(personDto.PersonJuridical!);
             }
             if (!Enum.IsDefined(typeof(PersonType), personDto.Type))
-                throw new ArgumentException("Tipo de Pessoas inválida");
+                throw new BadRequestException("Tipo de Pessoa inválida");
 
             await _unitOfWork.Persons.Update(personExist, person);
             await _unitOfWork.SaveChangesAsync();
@@ -86,7 +87,7 @@ namespace WassamaraManagement.Services
             Person person = await _unitOfWork.Persons.GetById(id);
             if (person == null)
             {
-                throw new KeyNotFoundException("Pessoa não encontrada");
+                throw new NotFoundException("Pessoa não encontrada");
             }
 
             await _unitOfWork.Persons.Delete(person);
