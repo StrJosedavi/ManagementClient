@@ -33,8 +33,8 @@ namespace WassamaraManagement.Controllers
             }
 
             await _personService.Create(personDto);
-            
-            return Created();
+
+            return CreatedAtAction(null, new { Message = "Criação de pessoa realizada com sucesso"});
         }
 
         /// <summary>
