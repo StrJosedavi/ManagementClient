@@ -31,17 +31,13 @@ namespace WassamaraManagement.Services
             StringBuilder builder = new StringBuilder();
             using var sha512 = SHA512.Create();
 
-            // Convertendo a senha de string para bytes
             byte[] bytes = Encoding.UTF8.GetBytes(clienteDto.Password);
 
-            // Calculando o hash SHA-512 dos bytes da senha
             byte[] hash = sha512.ComputeHash(bytes);
-
-            // Convertendo o hash de bytes para uma string hexadecimal
 
             for (int i = 0; i < hash.Length; i++)
             {
-                builder.Append(hash[i].ToString("x2")); // "x2" formata cada byte como hexadecimal
+                builder.Append(hash[i].ToString("x2")); 
             }
             
             if (user.Password == builder.ToString()) {

@@ -21,7 +21,6 @@ namespace WassamaraManagement.Repository
         public async Task Delete(Person person)
         {
             _context.Persons.Remove(person);
-            await _context.SaveChangesAsync();
         }
 
         public async Task<List<Person>> GetAll(string? cpf, string? cnpj)
@@ -52,7 +51,6 @@ namespace WassamaraManagement.Repository
         public async Task Update(Person personExist, Person person)
         {
             _context.Entry(personExist).CurrentValues.SetValues(person);
-             await _context.SaveChangesAsync();
         }
     }
 }
